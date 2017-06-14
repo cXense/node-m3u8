@@ -43,7 +43,8 @@ Item.prototype.serialize = function serialize() {
 Item.unserialize = function unserialize(constructor, object) {
   var item = new constructor;
   item.attributes = AttributeList.unserialize(object.attributes);
-  item.properties = object.properties;
+  item.properties = object.properties || {};
+  item.properties.date = item.properties.date ? new Date(item.properties.date) : item.properties.date;
   return item;
 };
 
